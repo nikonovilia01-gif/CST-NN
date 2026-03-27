@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООО «ЦСТ-НН» - Строительная компания полного цикла</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ========================================
+           СТИЛИ ДЛЯ ВСЕХ ИЗОБРАЖЕНИЙ
+           ======================================== */
+
+        /* 1. ЛОГОТИП В ШАПКЕ */
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 5px;
+            display: block;
+        }
+
+        /* 2. ИЗОБРАЖЕНИЕ В РАЗДЕЛЕ "О КОМПАНИИ" */
+        .about-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: block;
+        }
+
+        /* 3. ИЗОБРАЖЕНИЯ УСЛУГ */
+        .service-image {
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        /* 4. ИЗОБРАЖЕНИЯ ПРОЕКТОВ */
+        .project-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 4px solid #3b82f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 5. ИЗОБРАЖЕНИЯ СЕРТИФИКАТОВ */
+        .certificate-image {
+            width: 180px;
+            height: 240px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 6. ЛОГОТИПЫ КЛИЕНТОВ */
+        .client-logo {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: block;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e3a8a;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1e3a8a;
+        }
+
+        .header-contacts {
+            text-align: right;
+        }
+
+        .header-contacts a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+        }
+
+        .header-contacts a:hover {
+            color: #3b82f6;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #1e3a8a;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Sidebar */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            padding: 80px 30px 30px;
+        }
+
+        .mobile-sidebar.active {
+            left: 0;
+        }
+
+        .mobile-sidebar ul {
+            list-style: none;
+        }
+
+        .mobile-sidebar li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-sidebar a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: color 0.3s;
+        }
+
+        .mobile-sidebar a:hover {
+            color: #3b82f6;
+        }
+
+        .mobile-sidebar .header-contacts {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .mobile-sidebar .header-contacts a {
+            border: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            color: #1e3a8a;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: rgba(30, 58, 138, 0.05);
+            clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            color: #1e3a8a;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .hero-stat {
+            background: rgba(30, 58, 138, 0.1);
+            padding: 25px 35px;
+            border-radius: 12px;
+            border: 2px solid #3b82f6;
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1e3a8a;
+        }
+
+        .hero-stat span {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        /* Section Base */
+        section {
+            padding: 100px 0;
+        }
+
+        section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 32px;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .about-feature h4 {
+            color: #1e3a8a;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .about-feature p {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 45px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b82f6;
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1e3a8a;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .service-content {
+            padding: 40px;
+        }
+
+        .service-content h3 {
+            font-size: 26px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            color: #475569;
+            line-height: 1.8;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        /* Work Types Section */
+        .work-types-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .work-type-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border: 2px solid #f1f5f9;
+        }
+
+        .work-type-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .work-type-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 12px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .work-type-card h4 {
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* Certificates Section */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .certificate-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .certificate-card h4 {
+            color: #1e3a8a;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .certificate-card p {
+            color: #64748b;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Clients Section */
+        .clients-intro {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .clients-intro p {
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .client-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .client-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .client-card h4 {
+            color: #1e293b;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .project-content {
+            padding: 35px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-content h3 {
+            color: #1e3a8a;
+            font-size: 22px;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .project-year {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .project-location {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .project-content ul {
+            list-style: none;
+        }
+
+        .project-content li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .project-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            color: #1e3a8a;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(30, 58, 138, 0.05);
+            border-radius: 50%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            color: #1e3a8a;
+        }
+
+        .contact-block {
+            margin-bottom: 30px;
+        }
+
+        .contact-block strong {
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #475569;
+        }
+
+        .contact-block p, .contact-block a {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-block a:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h3 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #475569;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* ========================================
+           МОБИЛЬНАЯ АДАПТАЦИЯ (до 768px)
+           ======================================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Header Mobile */
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            header nav,
+            header .header-contacts {
+                display: none;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .logo-text p {
+                font-size: 11px;
+            }
+
+            .logo-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Hero Mobile */
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-stat {
+                padding: 15px 20px;
+            }
+
+            .hero-stat strong {
+                font-size: 28px;
+            }
+
+            /* Sections Mobile */
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .section-subtitle {
+                font-size: 15px;
+            }
+
+            .section-tag {
+                font-size: 11px;
+                padding: 6px 15px;
+            }
+
+            /* About Mobile */
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .about-content h3 {
+                font-size: 22px;
+            }
+
+            .about-content p {
+                font-size: 14px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .about-feature {
+                padding: 20px;
+            }
+
+            /* Stats Mobile */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 30px 20px;
+            }
+
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            .stat-label {
+                font-size: 14px;
+            }
+
+            /* Services Mobile */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .service-image {
+                height: 220px;
+            }
+
+            .service-content {
+                padding: 25px;
+            }
+
+            .service-content h3 {
+                font-size: 20px;
+            }
+
+            .service-content p {
+                font-size: 14px;
+            }
+
+            /* Work Types Mobile */
+            .work-types-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .work-type-card {
+                padding: 20px 15px;
+            }
+
+            .work-type-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .work-type-card h4 {
+                font-size: 13px;
+            }
+
+            /* Certificates Mobile */
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .certificate-image {
+                width: 150px;
+                height: 200px;
+            }
+
+            .certificate-card h4 {
+                font-size: 18px;
+            }
+
+            /* Clients Mobile */
+            .clients-intro {
+                padding: 30px 20px;
+            }
+
+            .clients-intro p {
+                font-size: 15px;
+            }
+
+            .clients-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .client-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .client-card h4 {
+                font-size: 16px;
+            }
+
+            /* Projects Mobile */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-image {
+                height: 220px;
+            }
+
+            .project-content {
+                padding: 25px;
+            }
+
+            .project-content h3 {
+                font-size: 18px;
+            }
+
+            .project-year {
+                font-size: 12px;
+                padding: 6px 15px;
+            }
+
+            .project-location {
+                font-size: 13px;
+            }
+
+            .project-content li {
+                font-size: 14px;
+            }
+
+            /* Contact Mobile */
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-info h3 {
+                font-size: 24px;
+            }
+
+            .contact-block p,
+            .contact-block a {
+                font-size: 15px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .contact-form h3 {
+                font-size: 22px;
+            }
+
+            /* Footer Mobile */
+            footer {
+                padding: 30px 0;
+            }
+
+            footer p {
+                font-size: 13px;
+            }
+        }
+
+        /* ========================================
+           ДОПОЛНИТЕЛЬНАЯ АДАПТАЦИЯ (769px - 992px)
+           ======================================== */
+        @media (max-width: 992px) and (min-width: 769px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .work-types-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .work-types-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .certificates-grid,
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+            
+            .service-image {
+                height: 250px;
+            }
+            
+            .project-image {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <ul>
+            <li><a href="#about" onclick="toggleMenu()">О компании</a></li>
+            <li><a href="#stats" onclick="toggleMenu()">Цифры</a></li>
+            <li><a href="#services" onclick="toggleMenu()">Услуги</a></li>
+            <li><a href="#works" onclick="toggleMenu()">Работы</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Объекты</a></li>
+            <li><a href="#contacts" onclick="toggleMenu()">Контакты</a></li>
+        </ul>
+        <div class="header-contacts">
+            <a href="tel:+79202537278">+7 920 253 72 78</a>
+            <a href="tel:4137278">413-72-78</a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Логотип ООО ЦСТ-НН" class="logo-image">
+                    <div class="logo-text">
+                        <h1>ООО «ЦСТ-НН»</h1>
+                        <p>Строительная компания полного цикла</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">О компании</a></li>
+                        <li><a href="#stats">Цифры</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#works">Работы</a></li>
+                        <li><a href="#projects">Объекты</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-contacts">
+                    <a href="tel:+79202537278">+7 920 253 72 78</a>
+                    <a href="tel:4137278">413-72-78</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Промышленное и гражданское строительство</h2>
+                <p>Занимаемся промышленным и гражданским строительством более 13 лет. Гарантия качества, надежности и безопасности</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>13+ лет</strong>
+                        <span>Опыта работы</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>100%</strong>
+                        <span>Довольных заказчиков</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>500 млн ₽</strong>
+                        <span>СРО</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">О компании</span>
+                <h2 class="section-title">ООО «ЦСТ-НН» с 2011 года</h2>
+                <p class="section-subtitle">Специализируемся на строительстве и реконструкции объектов промышленного и жилого фонда, а также устройстве наружных и внутренних сетей зданий и сооружений</p>
+            </div>
+            <div class="about-grid">
+                <img src="images/about-company.jpg" alt="О компании ООО ЦСТ-НН" class="about-image">
+                <div class="about-content">
+                    <h3>С момента выхода на рынок компании удалось завоевать доверие 100% заказчиков</h3>
+                    <p>Мы гордимся своей репутацией надежного партнера в сфере строительства. За годы работы мы реализовали множество сложных проектов различной масштаба и сложности.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <h4>🏗️ Строительство полного цикла</h4>
+                            <p>Осуществляем комплексное управление проектом до ввода объекта в эксплуатацию, в т.ч. получение ЗОС</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>👥 Профессиональная команда</h4>
+                            <p>Применяем современные решения, новые технологии и высококвалифицированный персонал</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>✅ Результат</h4>
+                            <p>Высокое качество выполненных работ, соблюдение сроков, снижение затрат и возможных рисков</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>📋 Профессиональный уровень управления</h4>
+                            <p>Компания имеет все необходимые допуски и лицензии, опытный штат ИТР, включая ПТО и сметный отдел</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>🛡️ Гарантия качества</h4>
+                            <p>Огромный опыт работы и профессиональный подход позволяет проработать оптимальные варианты строительства для каждого случая</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>📜 Лицензии и допуски</h4>
+                            <p>Наша компания имеет лицензию МЧС, СРО 500 млн. рублей, в т.ч. на изыскательные работы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Наши достижения</span>
+                <h2 class="section-title">О компании в цифрах</h2>
+                <p class="section-subtitle">Наши показатели говорят о масштабе и качестве выполняемых работ</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <span class="stat-number">13+</span>
+                    <span class="stat-label">Лет усиленной работы в строительной отрасли</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👷</div>
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Человек работают над проектом с 0 до результата</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏛️</div>
+                    <span class="stat-number">20</span>
+                    <span class="stat-label">Выполненных государственных контрактов</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Довольных заказчиков доверяют нам свои проекты</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚜</div>
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Единиц строительной и коммерческой техники в собственности</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏗️</div>
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Проектов реализовано с 2011 года, в т.ч. государственных оборонных заказов</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <span class="stat-number">500 млн ₽</span>
+                    <span class="stat-label">СРО</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <span class="stat-number">TOP</span>
+                    <span class="stat-label">Надежный партнер в строительной отрасли</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Направления деятельности</span>
+                <h2 class="section-title">Комплексный подход к строительству</h2>
+                <p class="section-subtitle">Предлагаем полный спектр услуг в области промышленного и гражданского строительства</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="images/industrial-construction.jpg" alt="Промышленное строительство" class="service-image">
+                    <div class="service-content">
+                        <h3>Промышленное и гражданское строительство</h3>
+                        <p>Мы выполняем даже самые сложные и крупные проекты по реконструкции и строительству объектов производственного назначения. В нашу работу входит прохождение экспертиз, составление смет и анализ проекта, т.ч. и корректировка, получение разрешения на строительные работы, геодезия и изыскания, строительный контроль, ведение и формирование исполнительной документации, поставка материалов, координация проекта, ввод объекта в эксплуатацию с получением ЗОС.</p>
+                        <p style="margin-top: 15px;">Мы создаем объекты гражданского назначения, учитывая все особенности местности, климатические условия, гидрогеологические параметры. Используем современные технологии строительства в различных условиях эксплуатации. В ходе строительства возводим как капитальные, так и временные сооружения. Гарантируем выполнение индивидуальных задач и потребностей наших заказчиков, а также ориентируемся на решении задач любой сложности.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/general-contracting.jpg" alt="Генподрядные работы" class="service-image">
+                    <div class="service-content">
+                        <h3>Генподрядные работы по строительству</h3>
+                        <p>В роли генподрядчика компания ООО «ЦСТ-НН» осуществляет управление строительством на каждой стадии, координируем качество выполнения работ, подготавливаем полный пакет исполнительной документации для ввода объекта в эксплуатацию, отвечаем за результат перед заказчиком.</p>
+                        <p style="margin-top: 15px;">Мы выполняем генподрядные работы в Московской, Нижегородской, Калужской, Владимирской областях, а так же в Краснодарском крае. Все работы проводятся в соответствии с Градостроительным кодексом РФ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Types Section -->
+    <section id="works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Виды работ</span>
+                <h2 class="section-title">Полный спектр строительных услуг</h2>
+                <p class="section-subtitle">Выполняем все виды строительных и монтажных работ любой сложности</p>
+            </div>
+            <div class="work-types-grid">
+                <div class="work-type-card">
+                    <div class="work-type-icon">🏗️</div>
+                    <h4>Сооружение фундаментов и оснований любой сложности</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🧱</div>
+                    <h4>Устройство стеновых ограждений, фасада и кровли</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">💡</div>
+                    <h4>Устройство освещения и электроснабжения</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">⛏️</div>
+                    <h4>Земляные работы</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">📐</div>
+                    <h4>Геодезические работы</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🎨</div>
+                    <h4>Черновые и чистовые отделочные работы</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🔩</div>
+                    <h4>Изготовление и монтаж металлических конструкций</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🌳</div>
+                    <h4>Благоустройство территорий</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">💧</div>
+                    <h4>Устройство систем водоснабжения и канализации</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🔬</div>
+                    <h4>Проведение индивидуальных испытаний</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">📹</div>
+                    <h4>Устройство систем видеонаблюдения</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">⚙️</div>
+                    <h4>Монтаж основного и вспомогательного оборудования</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🏢</div>
+                    <h4>Бетонные работы</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🏗️</div>
+                    <h4>Монтаж железобетонных конструкций</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🔧</div>
+                    <h4>Устройство систем ОС и ПС</h4>
+                </div>
+                <div class="work-type-card">
+                    <div class="work-type-icon">🚀</div>
+                    <h4>Проведение комплексных пуско-наладочных работ</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Документы</span>
+                <h2 class="section-title">Сертификаты и лицензии</h2>
+                <p class="section-subtitle">ООО «ЦСТ-НН» осуществляет свою деятельность на основании всех необходимых разрешительных документов</p>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <img src="images/certificate-sro.jpg" alt="Сертификат СРО" class="certificate-image">
+                    <h4>СРО</h4>
+                    <p>СРО-С-119-1722009</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="images/certificate-mchs.jpg" alt="Лицензия МЧС" class="certificate-image">
+                    <h4>Лицензия МЧС</h4>
+                    <p>№52-Б/01042</p>
+                </div>
+                <div class="certificate-card">
+                    <img src="images/certificate-other.jpg" alt="Сертификат" class="certificate-image">
+                    <h4>Сертификат</h4>
+                    <p>№ООР.ИЭ.RU.01104.23</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients">
+        <div class="container">
+            <div class="clients-intro">
+                <p>За 13 лет усиленной работы ООО «ЦСТ-НН» многократно доказало свой профессионализм. Нам доверяют крупнейшие организации и государственные структуры</p>
+            </div>
+            <div class="clients-grid">
+                <div class="client-card">
+                    <img src="images/client-mchs.png" alt="Главное управление МЧС России" class="client-logo">
+                    <h4>Главное управление МЧС России по Нижегородской области</h4>
+                </div>
+                <div class="client-card">
+                    <img src="images/client-rosgvardiya.png" alt="РОСГВАРДИЯ" class="client-logo">
+                    <h4>РОСГВАРДИЯ</h4>
+                </div>
+                <div class="client-card">
+                    <img src="images/client-sverdlov.png" alt="ФКП Завод имени Я. М. Свердлова" class="client-logo">
+                    <h4>ФКП «Завод имени Я. М. Свердлова»</h4>
+                </div>
+            </div>
+            <div class="section-header" style="margin-top: 70px;">
+                <span class="section-tag">Партнеры</span>
+                <h2 class="section-title">Благодарности от партнеров</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Портфолио</span>
+                <h2 class="section-title">Реализованные объекты</h2>
+                <p class="section-subtitle">Наши успешные проекты в различных регионах России</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="images/project-administration.jpeg" alt="Администрация города Дзержинска" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Администрация города Дзержинска</h3>
+                            <span class="project-year">2019-2024</span>
+                        </div>
+                        <p class="project-location">📍 Нижегородская область, г. Дзержинск, пл. Дзержинского, 1</p>
+                        <ul>
+                            <li>Строительство и реконструкция зданий АБК и цехов</li>
+                            <li>Устройство защитных ограждений и сооружений</li>
+                            <li>Благоустройство территории</li>
+                            <li>Монтаж внутренних и наружных систем водопровода, отопления, канализации</li>
+                            <li>Монтаж систем АПС, АПТ, СОУЭ, СС, ОС, ВН, ЭС</li>
+                            <li>Монтаж, поставка и ремонт технологического оборудования</li>
+                            <li>Отделочные работы</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/project-sverdlova-2.jpeg" alt="пр. Свердлова, 2" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Благоустройство и отделка</h3>
+                            <span class="project-year">2016-2023</span>
+                        </div>
+                        <p class="project-location">📍 Нижегородская область, г. Дзержинск, проспект Свердлова, 2</p>
+                        <ul>
+                            <li>Благоустройство площадок и лестничных маршей</li>
+                            <li>Устройство наружного освещения</li>
+                            <li>Отделочные работы в детских дошкольных учреждениях и школах</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/project-vorsino.jpeg" alt="Индустриальный Парк Ворсино" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Индустриальный Парк «Ворсино»</h3>
+                            <span class="project-year">2023-2024</span>
+                        </div>
+                        <p class="project-location">📍 Калужская область, с. Ворсино, Северная промышленная зона, строение 1</p>
+                        <ul>
+                            <li>Полный цикл работ по строительству комплекса зданий и сооружений</li>
+                            <li>Насосная станция 3-го подъема с получением ЗОС</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/project-military-3424.jpeg" alt="Войсковая часть 3424" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Войсковая часть 3424</h3>
+                            <span class="project-year">2022-2023</span>
+                        </div>
+                        <p class="project-location">📍 Нижегородская область, г. Дзержинск, проспект Свердлова, 3</p>
+                        <ul>
+                            <li>Реконструкция кровли здания казармы</li>
+                            <li>Монтаж систем АПС, ОС и СОУЭ в зданиях казарм</li>
+                            <li>Комплекс строительно-монтажных работ по устройству охранного периметра</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/project-spsch-1.jpg" alt="СПСЧ №1" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Специальная пожарно-спасательная часть №1</h3>
+                            <span class="project-year">2022</span>
+                        </div>
+                        <p class="project-location">📍 Нижегородская область, г. Дзержинск, проспект Свердлова, 2</p>
+                        <ul>
+                            <li>Реконструкция кровли здания СПСЧ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="images/project-krasnaya-etna.jpeg" alt="Завод Красная Этна" class="project-image">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Завод «Красная Этна»</h3>
+                            <span class="project-year">2011-2013</span>
+                        </div>
+                        <p class="project-location">📍 Нижегородская область, г. Нижний Новгород, Порт-Артурская, 1</p>
+                        <ul>
+                            <li>Реконструкция и строительство зданий</li>
+                            <li>Кровельные работы</li>
+                            <li>Устройство систем вентиляции</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacts" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Обращаясь в нашу компанию, вы получаете надежного партнера, качественный сервис и гарантию соблюдения сроков</h3>
+                    <div class="contact-block">
+                        <strong>Гарантия качества. Надежность. Безопасность.</strong>
+                    </div>
+                    <div class="contact-block">
+                        <strong>Адрес:</strong>
+                        <p>606002, Нижегородская область, г. Дзержинск, пр-кт. Свердлова, стр. 62А/1, этаж 2</p>
+                    </div>
+                    <div class="contact-block">
+                        <strong>Email:</strong>
+                        <p>
+                            <a href="mailto:ooocstnn@mail.ru">ooocstnn@mail.ru</a><br>
+                            <a href="mailto:cst-nn@mail.ru">cst-nn@mail.ru</a>
+                        </p>
+                    </div>
+                    <div class="contact-block">
+                        <strong>Телефоны:</strong>
+                        <p>
+                            <a href="tel:4137278">413-72-78</a><br>
+                            <a href="tel:+79202537278">+7 920 253 72 78</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Оставить заявку</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" placeholder="Опишите ваш проект или вопрос"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 ООО «ЦСТ-НН». Все права защищены.</p>
+            <p>Строительная компания полного цикла | СРО-С-119-1722009 | Лицензия МЧС №52-Б/01042</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript для мобильного меню -->
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('overlay');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            
+            // Блокируем прокрутку body когда меню открыто
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Закрытие меню при изменении размера окна (если перешли на десктоп)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const sidebar = document.getElementById('mobileSidebar');
+                const overlay = document.getElementById('overlay');
+                const menuBtn = document.querySelector('.mobile-menu-btn');
+                
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                menuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
